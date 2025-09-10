@@ -1,0 +1,119 @@
+/* Navbar.css */
+/* Color Palette */
+:root {
+  --primary-color: #00a5ff;
+  --secondary-color: #6c757d;
+  --text-color: #343a40;
+  --background-color: #f8f9fa;
+  --navbar-height: 70px; /* Consistent navbar height */
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+  height: var(--navbar-height); /* Use the variable */
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem; /* Reduce top/bottom padding */
+  max-width: 1200px;
+  margin: 0 auto;
+  height: 100%; /* Fill the navbar height */
+}
+
+.site-name {
+  font-size: 1.75rem;
+  font-weight: bolder;
+  color: var(--text-color);
+  text-decoration: none;
+  white-space: nowrap; /* Prevent wrapping */
+}
+
+/* --- Navigation Links --- */
+.nav-links {
+  display: flex;
+  align-items: center;
+}
+
+.nav-item {
+  text-decoration: none;
+  color: var(--text-color);
+  font-size: 1.1rem;
+  transition: color 0.3s ease;
+  padding: 0.5rem 1rem;
+}
+
+.nav-item.links {
+  /* Removed margin-top */
+}
+
+.nav-item.active {
+  color: var(--primary-color);
+  font-weight: 600;
+  border-bottom: 2px solid var(--primary-color);
+}
+
+.nav-item.links:hover {
+  color: var(--primary-color);
+}
+
+/* --- Hamburger Menu --- */
+.hamburger-menu {
+  display: none; /* Hidden by default */
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--text-color);
+  cursor: pointer;
+  padding: 0;
+}
+
+/* --- Media Queries for Responsiveness --- */
+@media (max-width: 768px) {
+  .navbar-container {
+    padding: 0 1rem;
+  }
+
+  /* Hamburger Menu Display */
+  .hamburger-menu {
+    display: block;
+  }
+
+  /* Hide Nav Links by Default on Mobile */
+  .nav-links {
+    position: absolute;
+    top: var(--navbar-height); /* Place below the navbar */
+    left: 0;
+    width: 100%;
+    background-color: white;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: none; /* Hide initially */
+    transition: all 0.3s ease; /* Smooth transition */
+  }
+
+  /* Show Nav Links When Active (Menu Open) */
+  .nav-links.active {
+    display: flex; /* Show when menu is active */
+  }
+
+  .nav-item {
+    margin: 0.5rem 0;
+    font-size: 1rem;
+    width: 100%;
+    text-align: left;
+  }
+
+  .site-name {
+    font-size: 1.5rem;
+  }
+}
