@@ -20,14 +20,14 @@
 
 ## 📖 Overview
 
-Alz-InsightNet is a cutting-edge AI-powered system designed for early detection of Alzheimer's Disease using multimodal neuroimaging data. The system combines MRI and PET scan analysis with explainable AI techniques to provide clinicians with interpretable predictions and visual explanations.
+Alz-InsightNet is a research prototype for early detection of Alzheimer's Disease using multimodal neuroimaging data. The system combines MRI and PET scan analysis with explainable AI techniques to produce interpretable predictions and visual explanations.
 
 ### 🎯 Key Highlights
 
 - **Multimodal Analysis**: Processes both MRI and PET scans for comprehensive brain analysis
 - **Explainable AI**: Implements LIME, Grad-CAM, and Integrated Gradients for transparent predictions
 - **High Accuracy**: Achieves 99.63% accuracy on MRI data and 88% on PET data
-- **Clinical Ready**: User-friendly interface designed for healthcare professionals
+- **Research Prototype**: Built to demonstrate the approach, not clinically validated or deployed
 - **Real-time Processing**: Fast prediction and explanation generation
 
 ## 🌟 Features
@@ -35,7 +35,8 @@ Alz-InsightNet is a cutting-edge AI-powered system designed for early detection 
 ### 🔬 **AI Models**
 - **Ensemble MRI Model**: Modified ResNet50 + DenseNet201 with CBAM attention
 - **PET Model**: Modified VGG19 with CBAM attention mechanism
-- **Decision-Level Fusion**: Combines multimodal predictions for enhanced accuracy
+- **Decision-Level Fusion**: Proof-of-concept combination of MRI and PET predictions (single-image
+  demo only; not yet benchmarked on a held-out test set)
 
 ### 🎨 **Frontend Capabilities**
 - **Interactive Dashboard**: Clean, intuitive Material-UI interface
@@ -103,7 +104,7 @@ Alz-InsightNet is a cutting-edge AI-powered system designed for early detection 
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/alz-insightnet.git
+git clone https://github.com/VithyabavanS/alz-insightnet.git
 cd alz-insightnet
 
 # Install dependencies
@@ -157,7 +158,7 @@ file: [PET_IMAGE]
 
 ### 2. **Multimodal Analysis**
 ```bash
-# Combined MRI + PET analysis
+# Combined MRI + PET analysis (proof-of-concept fusion, see note above)
 POST /predict_both
 Content-Type: multipart/form-data
 mri: [MRI_IMAGE]
@@ -174,11 +175,16 @@ GET /explain_both
 
 ## 🎯 Model Performance
 
-| Model | Accuracy | Precision | Recall | F1-Score |
-|-------|----------|-----------|---------|----------|
-| MRI Ensemble | **99.63%** | 99% | 99% | 99% |
-| PET VGG19 | **88%** | 88% | 88% | 88% |
-| Fused Model | **94%** | 93% | 94% | 93% |
+| Model        | Accuracy   | Precision | Recall | F1-Score |
+| ------------ | ---------- | --------- | ------ | -------- |
+| MRI Ensemble | **99.63%** | 99%       | 99%    | 99%      |
+| PET VGG19    | **88%**    | 88%       | 88%    | 88%      |
+
+*Note: reported accuracy comes from an image-level train/validation/test split applied after
+class balancing (a common approach in slice-based ADNI studies), so absolute accuracy may be
+optimistic — see the paper/dissertation for details. Decision-level MRI+PET fusion is implemented
+as a single-image demo (`/predict_both`) but has not been evaluated on a held-out test set, so no
+fused accuracy is reported here.*
 
 ### 📈 Classification Stages
 - **AD**: Alzheimer's Disease
@@ -236,30 +242,13 @@ Response:
 </details>
 
 ## 🗂️ Project Structure
-
-```
 alz-insightnet/
-├── 📁 public/
-│   ├── index.html
-│   └── manifest.json
-├── 📁 src/
-│   ├── 📁 components/
-│   │   ├── Dashboard/
-│   │   ├── Prediction/
-│   │   └── Reports/
-│   ├── 📁 services/
-│   │   └── api.js
-│   ├── 📁 utils/
-│   └── App.js
-├── 📁 backend/
-│   ├── app.py
-│   ├── 📁 models/
-│   ├── 📁 utils/
-│   └── requirements.txt
-├── 📁 docs/
+├── Backend/
+├── Frontend/
+├── .gitignore
 ├── package.json
 └── README.md
-```
+
 
 ## 🧪 Testing
 
@@ -285,7 +274,7 @@ This project is based on the dissertation:
 1. Novel ensemble approach combining ResNet50 and DenseNet201
 2. Integration of CBAM attention mechanisms
 3. Comprehensive explainability framework
-4. Clinical-ready interface design
+4. Web-based prototype interface for demonstrating the approach
 
 ## 🤝 Contributing
 
@@ -306,7 +295,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 - **University of Westminster** - Academic support and guidance
 - **ADNI Dataset** - Neuroimaging data for model training
-- **Medical Experts** - Clinical validation and feedback
+- **Medical and Technical Experts** - Informal feedback on system usability and explainability
+  from a small group of clinicians, medical students, and engineers
 - **Open Source Community** - Tools and frameworks
 
 ## 📞 Contact & Support
@@ -316,9 +306,10 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 **Vithyabavan Sunthareswaran**  
 *Software Engineer & AI Researcher*
 
-[![Email](https://img.shields.io/badge/Email-Contact-red?style=flat-square&logo=gmail)](mailto:your.email@example.com)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue?style=flat-square&logo=linkedin)](https://linkedin.com/in/yourprofile)
-[![GitHub](https://img.shields.io/badge/GitHub-Follow-black?style=flat-square&logo=github)](https://github.com/yourusername)
+<!-- TODO: replace with your real email, LinkedIn, and this repo's URL before sharing -->
+[![Email](https://img.shields.io/badge/Email-Contact-red?style=flat-square&logo=gmail)](mailto:REPLACE_WITH_YOUR_EMAIL)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue?style=flat-square&logo=linkedin)](https://linkedin.com/in/REPLACE_WITH_YOUR_PROFILE)
+[![GitHub](https://img.shields.io/badge/GitHub-Follow-black?style=flat-square&logo=github)](https://github.com/VithyabavanS)
 
 </div>
 
